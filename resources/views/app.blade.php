@@ -168,11 +168,7 @@
                 ],
             ]);
         @endphp
-        <script type="application/ld+json">
-
-        {!! json_encode($product, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
-
-    </script>
+        <script type="application/ld+json">{!! json_encode($product, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}</script>
     @endif
 
 

@@ -217,7 +217,8 @@
 
             <div class="grid sm:grid-cols-2 gap-5 mb-5">
                 @foreach (car() as $item)
-                    <div class="relative bg-white shadow-lg rounded-lg border-b-4 border-primary overflow-hidden">
+                    <div id="{{ Str::slug($item[0]) }}"
+                        class="scroll-mt-5 relative bg-white shadow-lg rounded-lg border-b-4 border-primary overflow-hidden">
                         <span title="Harga {{ rupiah($item[1]) }} / 12 jam"
                             class="absolute top-0 left-0 bg-primary text-slate-300 font-semibold p-1 px-2 text-xs rounded-br-lg rounded-tl-lg">
                             {{ rupiah($item[1]) }} / 12 jam
@@ -262,7 +263,8 @@
             <p>Banyak sekali penyedia layanan rental mobil yang tidak amanah atau bahkan hanya memiliki satu mobil
                 pribadi. Namun kami dari {{ web()->cv }} memiliki banyak pilihan mobil dan bus atas nama
                 perusahaan. {{ web()->cv }} merupakan
-                penyedia layanan rental mobil terbaik terpercaya, resmi di Indonesia (seluruh Indonesia).</p>
+                penyedia layanan <a href="{{ route('home') }}">rental mobil</a> terbaik terpercaya, resmi di Indonesia
+                (seluruh Indonesia).</p>
 
             <p>Untuk garasi utama kami ada di kota Padang, Namun kami telah bekerja sama dengan beberapa partner untuk
                 mengelola rental mobil di seluruh Kecamatan, kabupaten, Kota, Provinsi yang ada di Indonesia.</p>
@@ -343,8 +345,10 @@
                 lain yang lebih
                 simpel Anda tinggal mengisi formulir reservasi yang ada di bawah ini:</p>
 
+            <x-contact.booking />
 
-            <p>Untuk pemesanan via WhatsApp sangat mudah anda tinggal menghubungi admin lalu menginformasikan detail
+            <p class="mt-5">Untuk pemesanan via WhatsApp sangat mudah anda tinggal menghubungi admin lalu
+                menginformasikan detail
                 pesanan seperti jadwal, durasi, data pribadi anda. Berikut alurnya:</p>
             <ul>
                 <li>
@@ -493,13 +497,31 @@
                 @endforeach
             </ul>
 
+            @php
+                $faqSchema = collect([
+                    '@context' => 'https://schema.org',
+                    '@type' => 'FAQPage',
+                    'mainEntity' => collect($faq)->map(function ($item) {
+                        return [
+                            '@type' => 'Question',
+                            'name' => $item['pertanyaan'],
+                            'acceptedAnswer' => [
+                                '@type' => 'Answer',
+                                'text' => $item['jawaban'],
+                            ],
+                        ];
+                    }),
+                ]);
+            @endphp
 
+            <script type="application/ld+json">{!! json_encode($faqSchema, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}</script>
 
             <h2>Penutup</h2>
             <p>Jadi kesimpulan dari artikel di atas adalah {{ web()->cv }} merupakan penyedia {{ $page }}
                 resmi untuk
                 daerah seluruh
-                Indonesia titik Kami menawarkan rental mobil khususnya di daerah {{ $location }} dengan banyak
+                Indonesia titik Kami menawarkan <a href="{{ route('location.archive') }}">rental mobil</a> khususnya di
+                daerah {{ $location }} dengan banyak
                 pilihan mobil
                 dan harga yang bervariasi. Sistem pemesanan bisa menggunakan driver ataupun tanpa driver (lepas kunci).
             </p>
