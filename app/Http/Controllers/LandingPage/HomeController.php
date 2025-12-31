@@ -11,8 +11,8 @@ class HomeController extends Controller
     {
         return view('pages.home', [
             'page' => 'Beranda',
-            'title' => 'Travel se-Sumatra Terlengkap ' . date("Y"),
-            'description' => 'Kami menawarkan jasa Travel se-Sumatra, ' . web()->tagline . ' untuk kapanpun. Kami telah menguasai rute seluruh Sumatra dan akan membantu travel anda.',
+            'title' => "Rental Mobil Murah se-Indonesia Unit Lengkap",
+            'description' => 'Rental mobil murah se-Indonesia dengan unit lengkap. Tersedia mobil manual / matic dan plus sopir. ' . web()->tagline . " CV. Idola Tebo Wisata",
             // 'thumbnail' => [
             //     'url' => asset(web()->defaultLogo),
             //     'width' => 672,

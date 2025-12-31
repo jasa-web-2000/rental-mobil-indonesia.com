@@ -1,51 +1,52 @@
 @php
     $faq = [
         [
-            'question' => 'Apakah <i>"' . web()->title . '"</i> Travel Resmi?',
+            'question' => 'Apakah <i>"' . web()->title . '"</i> benar-benar rental mobil resmi?',
             'answer' =>
                 'Ya, tentu saja! <i>"' .
                 web()->title .
-                '"</i> merupakan layanan travel resmi yang telah berpengalaman melayani berbagai kebutuhan transportasi untuk ' .
-                web()->tagline .
+                '"</i> adalah layanan rental mobil resmi yang berpengalaman melayani kebutuhan transportasi di seluruh Indonesia yang di tawarkan oleh ' .
+                web()->cv .
                 '. Dengan izin operasional lengkap dan tim profesional, kami selalu berkomitmen memberikan perjalanan yang aman, nyaman, dan terpercaya bagi setiap pelanggan.',
         ],
         [
-            'question' => 'Berapa Harga Travel?',
+            'question' => 'Berapa tarif sewa mobil di ' . web()->title . '?',
             'answer' =>
-                'Tarif travel kami menyesuaikan dengan rute dan lokasi penjemputan atau tujuan Anda. Kami selalu berusaha memberikan harga kompetitif tanpa mengurangi kualitas layanan. Untuk mengetahui harga terbaru dan promo yang sedang berlaku, silakan hubungi admin kami melalui WhatsApp.',
+                'Tarif rental mobil kami menyesuaikan dengan jenis kendaraan, durasi sewa, serta lokasi penjemputan atau tujuan Anda. Kami selalu berusaha memberikan harga kompetitif tanpa mengurangi kualitas layanan. Untuk mengetahui harga terbaru dan promo yang sedang berlaku, silakan hubungi admin kami melalui WhatsApp.',
         ],
         [
-            'question' => 'Tersedia Mobil Travel Apa Saja?',
+            'question' => 'Jenis mobil apa saja yang bisa saya sewa?',
             'answer' =>
-                'Kami menyediakan berbagai jenis armada yang siap mengantar Anda ke mana pun dengan nyaman. Semua kendaraan dilengkapi AC dan rutin diservis. Pilihan armada kami meliputi Avanza, Xenia, Calya, Innova, Hiace, Elf Long, Elf Short, Luxio, Gran Max, Pregio, Travello, Mobilio, Ertiga, APV, Fortuner, Pajero Sport, dan masih banyak lainnya.',
+                'Kami menyediakan berbagai jenis armada untuk kebutuhan perjalanan Anda. Semua kendaraan dilengkapi AC dan rutin diservis. Pilihan armada kami meliputi Avanza, Xenia, Calya, Innova, Hiace, Elf Long, Elf Short, Luxio, Gran Max, Pregio, Mobilio, Ertiga, APV, Fortuner, Pajero Sport, dan masih banyak lainnya, siap melayani seluruh wilayah Indonesia.',
         ],
         [
-            'question' => 'Garasi Travel Ada Di Mana?',
+            'question' => 'Dimana lokasi garasi dan operasional ' . web()->title . '?',
             'answer' =>
                 'Garasi utama kami berlokasi di ' .
                 address()->streetAddress .
                 '. Selain itu, karena ' .
                 web()->title .
-                ' adalah agen travel terpercaya, kami juga bekerja sama dengan banyak mitra di berbagai kota untuk menjangkau pelanggan lebih luas.',
+                ' adalah rental mobil terpercaya, kami juga bekerja sama dengan banyak mitra di berbagai kota di Indonesia untuk menjangkau pelanggan lebih luas.',
         ],
         [
-            'question' => 'Bagaimana Cara Pesan Tiket?',
+            'question' => 'Bagaimana prosedur memesan mobil?',
             'answer' =>
-                'Untuk memesan tiket sangat mudah dan fleksibel. Anda bisa melakukan pemesanan secara langsung di lokasi kami atau secara online melalui WhatsApp. Cukup isi data penumpang serta detail lokasi penjemputan dan tujuan, tim kami akan segera memproses pesanan Anda.',
+                'Memesan mobil sangat mudah dan fleksibel. Anda bisa melakukan pemesanan secara langsung di lokasi kami atau secara online melalui WhatsApp. Cukup isi data penyewa serta detail lokasi penjemputan dan tujuan, tim kami akan segera memproses pesanan Anda.',
         ],
         [
-            'question' => 'Bisa Melakukan Reschedule & Refund?',
+            'question' => 'Apakah bisa mengubah jadwal atau membatalkan sewa?',
             'answer' =>
-                'Perubahan jadwal atau reschedule sebaiknya dilakukan minimal satu hari sebelum keberangkatan agar penyesuaian bisa dilakukan dengan lancar. Untuk refund, kami memberikan kebijakan pengembalian penuh (100%) apabila sesuai dengan ketentuan yang berlaku. Umumnya, kami tidak meminta DP saat pemesanan untuk memudahkan pelanggan.',
+                'Perubahan jadwal sebaiknya dilakukan minimal satu hari sebelum waktu sewa agar penyesuaian bisa dilakukan dengan lancar. Untuk refund, kami memberikan kebijakan pengembalian sesuai ketentuan yang berlaku. Umumnya, kami tidak meminta DP saat pemesanan untuk memudahkan pelanggan.',
         ],
     ];
-
 @endphp
+
 
 <div class="bg-background-primary">
 
     <div class="my-container text-center py-20">
-        <x-sub-heading subTitle='FAQ Travel' description='Beberapa hal yang sering ditanyakan para penumpang.' />
+        <x-sub-heading subTitle='FAQ Rental Mobil/Bus'
+            description='Beberapa hal yang sering ditanyakan para penumpang.' />
 
         <ul
             class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 md:gap-x-14 lg:gap-x-20 [&>li>div]:gap-x-3 [&>li>div]:flex [&>li>div]:items-start [&>li>div]:mb-5 [&_.icon-faq]:flex [&_.icon-faq]:items-center [&_.icon-faq]:justify-center [&_.icon-faq]:p-3 [&_.icon-faq]:rounded-full [&_.icon-faq]:simple-gradient [&_.icon-faq]:shadow-md [&_.icon-faq]:text-text-description-white [&_svg]:size-6">

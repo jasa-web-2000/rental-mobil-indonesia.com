@@ -13,21 +13,18 @@ class SearchFormController extends Controller
     {
         $validated = $request->validated();
 
-        $originId = $validated['origin_district'] ?? $validated['origin_regency'] ?? $validated['origin_province'];
+        $location = $validated['district'] ?? $validated['regency'] ?? $validated['province'];
 
-        $destinationId = $validated['destination_district'] ?? $validated['destination_regency'] ?? $validated['destination_province'];
+        $province = province()->where('id', $location)->first();
+        $regency = regency()->where('id', $location)->first();
+        $district = district()->where('id', $location)->first();
 
 
-        $originName = location($originId)->name;
-        $destinationName = location($destinationId)->name;
-
+        $finalLocation = $district ?? $regency ?? $province;
         $params = [
-            'originId' => $originId,
-            'destinationId' => $destinationId,
-            'originName' => Str::slug($originName),
-            'destinationName' => Str::slug($destinationName),
+            'location' => Str::slug(Str::replace(['KOTA ', 'KABUPATEN ', 'kota-', 'kabupaten-'], '', $finalLocation->name)),
         ];
 
-        return redirect()->to(route('travel.show', $params));
+        return redirect()->to(route('location.show', $params));
     }
 }

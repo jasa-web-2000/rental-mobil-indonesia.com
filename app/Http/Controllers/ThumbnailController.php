@@ -12,7 +12,7 @@ class ThumbnailController extends Controller
         $image = new SimpleImage('images/general/thumbnail.jpg');
 
         if (!is_array($text)) {
-            $wrappedText = wordwrap($text, 10, "\n");
+            $wrappedText = wordwrap($text, 18, "\n");
             $lines = explode("\n", $wrappedText);
         }
 
@@ -25,8 +25,8 @@ class ThumbnailController extends Controller
                     'color' => '#2e2d2d'
                 ],
                 'color' => 'white',
-                'size' => 90,
-                'yOffset' =>  -200 + ($key * 130),
+                'size' => 150,
+                'yOffset' =>  -280 + ($key * 170),
                 'fontFile' => public_path('fonts/Inter-Regular.ttf'),
             ]);
         }
@@ -39,8 +39,8 @@ class ThumbnailController extends Controller
                 'color' => '#929292'
             ],
             'color' => 'black',
-            'size' => 57,
-            'yOffset' => 218,
+            'size' => 80,
+            'yOffset' => 320,
             'fontFile' => public_path('fonts/Inter-Regular.ttf'),
         ]);
 

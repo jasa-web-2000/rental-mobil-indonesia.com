@@ -34,7 +34,8 @@
             <div class="sm:col-span-full md:col-span-6 sm:max-w-3/4 md:max-w-full lg:max-w-[400px]">
                 <x-logo />
                 <p class="light">
-                    Ayo jadwalkan travel anda bersama <strong>{{ web()->title }}</strong>, siap membantu 24 jam. -
+                    Ayo jadwalkan rental mobil anda bersama <strong>{{ web()->title }}</strong>, siap membantu 24 jam.
+                    -
                     {{ web()->tagline }}.
                 </p>
             </div>

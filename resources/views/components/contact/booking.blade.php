@@ -1,8 +1,8 @@
 <div class="bg-background-primary rounded-lg shadow-md p-5 border-b-8 border-primary">
-    <h3>Reservasi Tiket</h3>
+    <h3>Pesan Rental</h3>
     <div class="border-t border-slate-200 h-1 w-full my-3"></div>
-    <form method="POST" target="_blank" action="{{ route('contact.form') }}" id="cari-rute"
-        class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 [&_label]:after:content-['*'] [&_label]:after:ml-0.5 [&_label]:after:text-danger [&_label]:line-clamp-1 [&_button]:overflow-hidden text-text-description-black ">
+    <form method="POST" target="_blank" action="{{ route('contact.form') }}" class="scroll-mt-28" id="formulir"
+        class="grid grid-cols-1 sm:grid-cols-2 [&.grid]:gap-x-6! [&.grid]:gap-y-4! [&_label]:after:content-['*'] [&_label]:after:ml-0.5 [&_label]:after:text-danger [&_label]:line-clamp-1 [&_button]:overflow-hidden text-text-description-black ">
         @csrf
 
         @if ($errors->any())
@@ -22,30 +22,32 @@
             <input id="name" type="text" name="name" required autocomplete="off" />
         </div>
 
-        <!-- Asal -->
-        <div class="">
-            <label for="origin">Asal
-            </label>
-            <input id="origin" type="text" name="origin" required autocomplete="off" />
-        </div>
-
-        <!-- Tujuan -->
-        <div class="">
-            <label for="destination">Tujuan
-            </label>
-            <input id="destination" type="text" name="destination" required autocomplete="off" />
-        </div>
-
-        <!-- Jumlah Penumpang -->
         <div class="col-span-full">
-            <label for="ticket">Jumlah Penumpang
+            @livewire('select-location')
+        </div>
+
+        <!-- Driver -->
+        <div class="col-span-full [&_div_*]:w-auto [&_div_*]:text-sm!">
+            <label>Driver
             </label>
-            <select title="Jumlah Penumpang" id="ticket" name="ticket" required autocomplete="off" class="pr-5">
-                @for ($i = 1; $i <= 10; $i++)
-                    <option value="{{ $i }}">{{ $i }} Penumpang</option>
+            <div class="">
+                <input id="driver" value="Dengan Driver" type="radio" name="driver" required autocomplete="off" />
+                <label for="driver">Dengan Driver</label>
+            </div>
+            <div class="">
+                <input id="no_driver" value="Tanpa Driver" type="radio" name="driver" required autocomplete="off" />
+                <label for="no_driver">Tanpa Driver</label>
+            </div>
+        </div>
+
+        <!-- Jumlah Hari -->
+        <div class="col-span-full">
+            <label for="day">Jumlah hari
+            </label>
+            <select name="day" required autocomplete="off" class="pr-5">
+                @for ($i = 0.5; $i <= 6; $i += 0.5)
+                    <option value="{{ $i }}">{{ $i }} Hari</option>
                 @endfor
-
-
             </select>
         </div>
 
@@ -56,7 +58,6 @@
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
                 </svg>
-
                 Kirim
             </button>
         </div>

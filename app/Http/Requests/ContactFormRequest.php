@@ -23,19 +23,23 @@ class ContactFormRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:50',
-            'origin' => 'required|string|max:100',
-            'destination' => 'required|string|different:origin|max:100',
-            'ticket' => 'required|integer|between:1,10',
+            "province" => "string",
+            "regency" => "nullable|string",
+            "district" => "nullable|string",
+            'driver' => 'required|string|in:Dengan Driver,Tanpa Driver',
+            'day' => 'required|numeric|between:0.5,6',
         ];
     }
 
     public function attributes(): array
     {
         return [
-            'name' => 'Nama',
-            'origin' => 'Asal',
-            'destination' => 'Tujuan',
-            'ticket' => 'Jumlah Penumpang',
+            'name' => 'nama',
+            "province" => "provinsi",
+            "regency" => "kota/kab",
+            "district" => "kecamatan",
+            'driver' => 'driver',
+            'day' => 'jumlah hari',
         ];
     }
 }

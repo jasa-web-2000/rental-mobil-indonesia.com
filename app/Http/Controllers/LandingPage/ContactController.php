@@ -12,7 +12,7 @@ class ContactController extends Controller
         return view('pages.contact', [
             'page' => 'Kontak ' . web()->title,
             'title' => 'Kontak ' . web()->title,
-            'description' => 'Pesan travel dengan mudah sekarang juga dengan mudah secara online via whatsapp',
+            'description' => 'Pesan rental mobil dengan mudah sekarang juga dengan mudah secara online via whatsapp',
         ]);
     }
 }

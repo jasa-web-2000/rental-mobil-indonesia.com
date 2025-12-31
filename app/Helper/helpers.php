@@ -8,7 +8,7 @@ use App\Http\Controllers\DistrictController;
 if (! function_exists('mail')) {
     function mail(?string $mail = null, bool $link = false)
     {
-        $resultMail = $mail ?? 'admin@cvidolatebowisata.com';
+        $resultMail = $mail ?? 'admin@rental-mobil-indonesia.com';
 
         return $resultMail;
     }
@@ -18,7 +18,7 @@ if (! function_exists('phoneNumber')) {
     function phoneNumber(?string $phoneNumber = null, bool $link = false)
     {
         // $resultPhoneNumber = $phoneNumber ?? validationPhoneNumber();
-        $resultPhoneNumber = $phoneNumber ?? '+62 822-8922-3939';
+        $resultPhoneNumber = $phoneNumber ?? '+62 821-2182-9706';
 
         return $link ? str_replace(['-', '+', ' '], '', $resultPhoneNumber) : $resultPhoneNumber;
     }
@@ -106,7 +106,8 @@ if (! function_exists('web')) {
     {
         $data = [
             "title" => env('APP_NAME'),
-            "tagline" => "Jadwalkan travel anda bersama " . env('APP_NAME'),
+            "tagline" => "Rental mobil anda bersama kami",
+            "cv" => "CV. Idola Tebo Wisata",
             "transparentLogo" => asset('images/general/logo.png'),
             "defaultLogo" => asset('images/general/logo.png'),
         ];
@@ -124,7 +125,7 @@ if (! function_exists('address')) {
             'addressCountry'  => 'ID',
             'addressRegion'   => 'Sumatera Barat',
             'postalCode'      => '25151',
-            'iframe'          => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.2878781622044!2d100.39912190000001!3d-0.9342968999999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2fd4b90d035ae6bb%3A0x482982fb1bf7d526!2sTravel%20padang%20medan%20sibolga%20lahat%20lampung%20palembang%20jambi%20tebo%20bungo%20rimbo%20bangka%20belitung%20pagar%20alam%20lubuk%20linggau%20bengkulu!5e0!3m2!1sid!2sid!4v1762590153550!5m2!1sid!2sid',
+            'iframe'          => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.2878781622044!2d100.39912190000001!3d-0.9342968999999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2fd4b90d035ae6bb%3A0x482982fb1bf7d526!2sLocation%20padang%20medan%20sibolga%20lahat%20lampung%20palembang%20jambi%20tebo%20bungo%20rimbo%20bangka%20belitung%20pagar%20alam%20lubuk%20linggau%20bengkulu!5e0!3m2!1sid!2sid!4v1762590153550!5m2!1sid!2sid',
             'linkAddress' => 'https://maps.app.goo.gl/QFf5kD8RfDz45HXK6',
         ];
 
@@ -173,21 +174,24 @@ if (! function_exists('district')) {
     }
 }
 if (! function_exists('location')) {
-    function location($id, $name = null)
+    function location($location)
     {
-        $data = null;
-        if ($id <= 94) {
-            $data = province()->where('id', $id)->first();
-        } elseif ($id <= 9471) {
-            $data = regency()->where('id', $id)->first();
-        } else {
-            $data = district()->where('id', $id)->first();
-        }
+        $province = province()->filter(function ($item) use ($location) {
+            return Str::slug(Str::lower($item->name)) === $location;
+        })->first();
 
-        if ($data && $name && Str::slug($data->name) != $name) {
-            return null;
-        }
+        $regency = regency()->filter(function ($item) use ($location) {
+            $name = Str::replace(['KOTA ', 'KABUPATEN ', 'kota-', 'kabupaten-'], '', $item->name);
+            return Str::slug(Str::lower($name)) === $location;
+        })->first();
 
+        $district = district()->filter(function ($item) use ($location) {
+            $name = Str::replace(['KOTA ', 'KABUPATEN ', 'kota-', 'kabupaten-'], '', $item->name);
+            return Str::slug(Str::lower($name)) === $location;
+        })->first();
+
+
+        $data = $province ?? $regency ?? $district;
         return $data;
     }
 }
@@ -197,7 +201,7 @@ if (! function_exists('menu')) {
     {
         $data = [
             [route('home'), "Beranda"],
-            [route('travel.archive'), "Travel"],
+            [route('location.archive'), "Lokasi"],
             [route('gallery'), "Galeri"],
             [route('contact'), "Kontak"],
             [route('sitemap.index'), "Sitemap"],
@@ -234,5 +238,25 @@ if (!function_exists('rupiah')) {
         // $formatter = new \NumberFormatter('id_ID', \NumberFormatter::CURRENCY);
         // return $formatter->formatCurrency($angka, 'IDR');
         return 'Rp ' . number_format($angka, 0, ',', '.');
+    }
+}
+
+if (!function_exists('car')) {
+    function car()
+    {
+        $car = [
+            ['MOBIL GRAND NEW AVANZA', '600000'],
+            ['MOBIL ALL NEW AVANZA', '650000'],
+            ['MOBIL INNOVA REBORN', '800000'],
+            ['MOBIL INNOVA ZENIX', '900000'],
+            ['MOBIL FORTUNER', '1800000'],
+            ['MOBIL ALPHARD', '3500000'],
+            ['MOBIL DOUBLE CABIN', '1700000'],
+            ['MOBIL PICK UP', '450000'],
+            ['MOBIL HIACE COMMUTER', '1200000'],
+            ['MOBIL HIACE PREMIO', '1300000'],
+            ['BUS PARIWISATA', '2000000'],
+        ];
+        return collect($car);
     }
 }

@@ -106,8 +106,19 @@
     <meta name="twitter:image:height" content="{{ $resultThumbnail->height }}">
     <meta name="twitter:image:alt" content="{{ $resultThumbnail->alt }}">
 
-    @if (request()->routeIs('travel.show') && isset($productSchema))
+    @if (request()->routeIs('location.show') && isset($productSchema))
         @php
+            $offers = collect(car())->map(function ($car) {
+                return [
+                    '@type' => 'Offer',
+                    'name' => $car[0],
+                    'price' => $car[1],
+                    'priceCurrency' => 'IDR',
+                    'availability' => 'https://schema.org/InStock',
+                    'url' => url()->current() . '#' . Str::slug($car[0]),
+                ];
+            });
+
             $product = collect([
                 '@context' => 'https://schema.org/',
                 '@type' => 'Product',
@@ -124,6 +135,7 @@
                     'lowPrice' => $productSchema['offers']['lowPrice'],
                     'highPrice' => $productSchema['offers']['highPrice'],
                     'priceCurrency' => 'IDR',
+                    'offers' => $offers,
                 ]),
                 'review' => [
                     '@type' => 'Review',
