@@ -11,7 +11,7 @@
     </FilesMatch>
 
     # Redirect dari www ke non-www
-    RewriteCond %{HTTP_HOST} ^www\.cvidolatebowisata\.com [NC]
+    RewriteCond %{HTTP_HOST} ^www\.rental-mobil-indonesia\.com [NC]
     RewriteRule ^(.*)$ https://rental-mobil-indonesia.com/$1 [L,R=301]
 
     # # Redirect dari HTTP ke HTTPS
